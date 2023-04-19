@@ -7,7 +7,7 @@ import { RickAndMortyDTO } from "../../../domain/rick-and-morty/dtos";
 import { AppStore } from "../../redux/store";
 import Character from "./components/Character";
 import Header from "./components/Header";
-
+import { VscArrowDown, VscArrowUp, VscFold } from "react-icons/vsc";
 export interface CharactersInterface {}
 
 const Characters: React.FC<CharactersInterface> = () => {
@@ -19,10 +19,6 @@ const Characters: React.FC<CharactersInterface> = () => {
     asc: false,
   });
   const dispatch = useDispatch();
-  const graphQLAdapter = new GraphQLAdapter();
-  const tickAndMortyGraphQLAdapter = new RickAndMortyGraphQLAdapter(
-    graphQLAdapter
-  );
 
   let characters = useSelector((store: AppStore) => store.characters);
   let filters = useSelector((store: AppStore) => store.filters);
@@ -76,42 +72,59 @@ const Characters: React.FC<CharactersInterface> = () => {
       asc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
     );
   };
+
   useEffect(() => {
+    const graphQLAdapter = new GraphQLAdapter();
+    const tickAndMortyGraphQLAdapter = new RickAndMortyGraphQLAdapter(
+      graphQLAdapter
+    );
+
     tickAndMortyGraphQLAdapter.getCharacters(1).then((result) => {
       dispatch(addCharacters(result));
     });
   }, []);
 
-  // useEffect(() => {
-  //   applyFilters();
-  // }, [filters]);
-
   return (
     <>
-      <div className="flex flex-col top-0 left-0 w-[375px]">
+      <div className="flex flex-col gap-10 top-0 left-0 w-[375px] min-w-[375px] ">
         <Header />
-        <div>
-          <button
+        <div className="flex  justify-end">
+          <div
+            title="Sort asc"
             onClick={() => {
               setSort({ sort: true, asc: true });
             }}
+            className="flex justify-center self-center  w-[16px] h-[16px] hover:cursor-pointer"
           >
-            asc
-          </button>
-          <button
+            <VscArrowUp
+              className="self-"
+              color={sort.sort && sort.asc ? "#5A3696" : "#EEE3FF"}
+            />
+          </div>
+          <div
+            title="No sort"
             onClick={() => {
               setSort({ sort: false, asc: false });
             }}
+            className="flex justify-center self-center  w-[16px] h-[16px] hover:cursor-pointer "
           >
-            no
-          </button>
-          <button
+            <VscFold
+              className="self-"
+              color={!sort.sort ? "#5A3696" : "#EEE3FF"}
+            />
+          </div>
+          <div
+            title="Sort desc"
             onClick={() => {
               setSort({ sort: true, asc: false });
             }}
+            className="flex justify-center self-center  w-[16px] h-[16px] hover:cursor-pointer"
           >
-            desc
-          </button>
+            <VscArrowDown
+              className="self-"
+              color={sort.sort && !sort.asc ? "#5A3696" : "#EEE3FF"}
+            />
+          </div>
         </div>
         <div>
           <p className="text-color-secondary">
