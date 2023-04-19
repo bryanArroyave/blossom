@@ -12,6 +12,34 @@ export default {
         "color-secondary": "#6B7280",
         "color-dgray": "#111827;",
       },
+      zIndex: {
+        modal: "1000",
+      },
+      opacity: {
+        modal: "0",
+      },
+      transitionProperty: {
+        modal: "opacity",
+      },
+      keyframes: {
+        "modal-show": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "modal-hide": {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+      },
+      animation: {
+        "modal-show": "modal-show 0.3s ease-out",
+        "modal-hide": "modal-hide 0.3s ease-out",
+      },
+    },
+    variants: {
+      extend: {
+        opacity: ["disabled"],
+      },
     },
   },
   plugins: [],
