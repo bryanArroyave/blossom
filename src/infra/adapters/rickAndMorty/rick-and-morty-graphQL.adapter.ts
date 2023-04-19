@@ -3,13 +3,14 @@ import { RickAndMortyDTO as RickAndMortyDomainDTO } from "../../../domain/rick-a
 import { RickAndMortyDTO as RickAndMortyInfraDTO } from "../../../infra/dtos/";
 import IRickAndMortyService from "../../../domain/rick-and-morty/ports/rick-and-morty.service";
 import GraphQLAdapter from "../graphQL/graphQL.adapter";
+import IGraphQl from "../../ports/GraphQl.port";
 
 export default class RickAndMortyGraphQLAdapter
   implements IRickAndMortyService
 {
   private readonly URL = RICK_AND_MORTY_GRAPHQL_URL;
 
-  constructor(private readonly graphQLAdapter: GraphQLAdapter) {}
+  constructor(private readonly graphQLAdapter: IGraphQl) {}
 
   async getCharacters(page: number): Promise<RickAndMortyDomainDTO[]> {
     const GET_USERS = `
