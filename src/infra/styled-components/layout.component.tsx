@@ -6,7 +6,4 @@ export const LayoutContainer = styled.div`
   display: flex;
   padding: 0;
   gap: 1rem;
-  @media only screen and (max-width: 1176px) {
-    padding: 12px;
-  }
 `;

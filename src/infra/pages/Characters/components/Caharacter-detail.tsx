@@ -5,11 +5,13 @@ import { useState, useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 import { addCharacters } from "../../../redux/states/characters";
 import { Link } from "react-router-dom";
 import Comment from "./Comment";
 
 export interface CharacterDetailInterface {}
+
 const CharacterDetail: React.FC<CharacterDetailInterface> = ({}) => {
   const { id } = useParams();
   const [selectedPeople, setActiveCharacter] = useState<RickAndMortyDTO>();
@@ -32,9 +34,22 @@ const CharacterDetail: React.FC<CharacterDetailInterface> = ({}) => {
     if (character) {
       return (
         <>
-          <div className=" px-10 py-5 w-full h-full">
+          <div
+            className={`character-detail selected bg-white px-10 py-5 w-full h-full`}
+          >
             <div className="flex flex-col">
-              <div className="w-full flex flex-col pb-5">
+              <div className="w-full flex flex-col pb-5 gap-2">
+                <div title="Back" className=" w-[30px] h-[30px] ">
+                  <Link to={"/"}>
+                    <div className="flex justify-center rounded-lg text-red self-center text-primary-600 w-[38px] h-[35px] hover:cursor-pointer  hover:bg-gray-300 md:hidden">
+                      <AiOutlineArrowLeft
+                        className="self-center"
+                        color={"#5A3696"}
+                        size={20}
+                      />
+                    </div>
+                  </Link>
+                </div>
                 <div className="relative w-[75px] h-[75x] ">
                   <img
                     className="rounded-full"

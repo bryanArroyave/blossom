@@ -2,21 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-#root{
+#root {
   padding: 0;
 }
 
+@font-face {
+  font-family: greycliffcf;
+  font-weight: regular;
+  src: url("./assets/fonts/Fontspring-DEMO-greycliffcf-regular.otf");
+}
+@font-face {
+  font-family: greycliffcf;
+  font-weight: bold;
+  src: url("./assets/fonts/Fontspring-DEMO-greycliffcf-bold.otf");
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: greycliffcf;
   line-height: 1.5;
   font-weight: 400;
 
   color: rgba(255, 255, 255, 0.87);
 
-  --primary-100: "#EEE3FF",
-  --primary-600: "#8054C7",
-  --primary-700: "#5A3696",
-  --secondary-600: "#63D838",
+  --primary-100: #eee3ff;
+  --primary-600: #8054c7;
+  --primary-700: #5a3696;
+  --secondary-600: #63d838;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -33,8 +44,6 @@ a {
 a:hover {
   color: #535bf2;
 }
-
-
 
 h1 {
   font-size: 3.2em;
@@ -55,10 +64,10 @@ button {
 button:hover {
   border-color: #646cff;
 }
-button:focus,
+/* button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
+} */
 
 /* @media (prefers-color-scheme: light) {
   :root {
@@ -73,7 +82,6 @@ button:focus-visible {
   }
 } */
 
-
 .modal {
   display: flex;
   align-items: center;
@@ -82,7 +90,7 @@ button:focus-visible {
   z-index: 1000;
   left: 0;
   top: 159px;
-  border: 1px solid var(--primary-100);
+  border: 1px solid var(--primary-700);
 
   /* width: 100%;
   height: 100%; */
@@ -111,4 +119,26 @@ button:focus-visible {
 .display-none {
   animation: modal-hide 0.3s ease-out;
   opacity: 0 !important;
+}
+
+.character-detail {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  transform: translatex(100%);
+  transition: transform ease 0.3s;
+  overflow: auto;
+}
+
+.character-detail.selected {
+  transform: translatex(0);
+  transition: transform ease 0.3s;
+}
+
+@media (min-width: 768px) {
+  .character-detail {
+    position: relative;
+    transform: translatex(0);
+  }
 }

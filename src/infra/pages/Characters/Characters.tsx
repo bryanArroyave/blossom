@@ -72,7 +72,6 @@ const Characters: React.FC<CharactersInterface> = () => {
       asc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
     );
   };
-
   useEffect(() => {
     const graphQLAdapter = new GraphQLAdapter();
     const tickAndMortyGraphQLAdapter = new RickAndMortyGraphQLAdapter(
@@ -86,9 +85,9 @@ const Characters: React.FC<CharactersInterface> = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-10 top-0 left-0 w-[375px] min-w-[375px] ">
+      <div className="flex flex-col gap-10 top-0 left-0 w-full md:w-[375px] md:min-w-[375px] mx-5 h-screen overflow-auto pr-5">
         <Header />
-        <div className="flex  justify-end">
+        <div className="flex  justify-end ">
           <div
             title="Sort asc"
             onClick={() => {
